@@ -37,7 +37,7 @@ Window {
             id: stackview
             visible: true
             anchors.fill: parent
-            initialItem: Qt.resolvedUrl("ConnectionPage.qml")
+            initialItem: Qt.resolvedUrl("MainWindow.qml")
         }
 
         WebView {

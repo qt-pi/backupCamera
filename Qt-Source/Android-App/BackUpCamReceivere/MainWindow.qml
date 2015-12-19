@@ -34,11 +34,19 @@ Item {
         Row {
             Button {
                 id: disconnectButton
-                text: "Disconnect"
+                text: {
+                    if (mainwerker.isConnected === true)
+                    {
+                        "Disconnect"
+                    }
+                    if (mainwerker.isConnected === false)
+                    {
+                        "Connect"
+                    }
+                }
+
                 onClicked: {
                     mainwerker.startConn();
-                    stackview.pop();
-                    stackview.push(Qt.resolvedUrl("ConnectionPage.qml"));
                 }
             }
 
