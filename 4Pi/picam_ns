@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+### BEGIN INIT INFO
+# Provides:             PiCam_NCS
+# Required-Start:       $all
+# Required-Stop:        $remote_fs $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:	PiCam Network Configuration Script
+# Description:          
+#			
+#
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+case "$1" in
+	start)
+
+		echo "================================================================="
+		echo "============ PiCam Network Configuration Script ================="
+		echo "================================================================="
+
+	;;
+
+	watchdog)
+		CONNECTED="false"
+			wget -q --tries=10 --timeout=10 --spider http://google.com
+			ret=$?
+			case "$ret" in
+			0)
+				echo "true"
+				case "$(pidof piCam | wc -w)" in
+				0) echo "Not running"
+				   cd /home/pi/piCam
+				   echo -ne '\n' | ./piCam -s  ohio-3dprint.com -p 8080 &
+				;;
+				1) echo "Already running"
+				;;
+				esac
+				CONNECTED="true"
+			;;
+			*)
+				/usr/bin/sudo /usr/bin/killall piCam
+				/usr/bin/sudo /usr/bin/killall mjpg_streamer
+				/usr/bin/sudo /sbin/ifdown wlan0
+				/usr/bin/sudo /sbin/ifup wlan0
+				delay 10
+			;;
+			esac
+		echo "done"
+	;;
+esac

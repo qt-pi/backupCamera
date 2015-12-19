@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainWindow.qml</file>
+        <file>SettingsPage.qml</file>
+        <file>CamViewer.qml</file>
+        <file>blackBackground.jpg</file>
+        <file>cameraButton.png</file>
+        <file>powerButton.png</file>
+        <file>refreshButton.png</file>
+        <file>settingsButton.png</file>
+        <file>toggleButton.png</file>
+        <file>cameraButtonPressed.png</file>
+        <file>powerButtonPressed.png</file>
+        <file>refreshButtonPressed.png</file>
+        <file>settingsButtonPressed.png</file>
+        <file>toggleButtonPressed.png</file>
+        <file>ConnectionPage.qml</file>
+    </qresource>
+</RCC>
